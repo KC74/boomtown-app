@@ -1,0 +1,17 @@
+.left-container {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 30%;
+    align-items: center;
+}
+
+.right-container {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
+}
+
+.logo-container {
+    margin: 0 24px;
+}

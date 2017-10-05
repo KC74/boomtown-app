@@ -1,0 +1,39 @@
+import React from 'react';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+const styles = {
+    top: '8px',
+    position: 'absolute'
+}
+
+
+const BoomSelectField = ({ values, handleChange, labels }) => {
+
+    const menuItems = (values) => {
+        return labels.map((name) => (
+            <MenuItem
+                key={name}
+                insetChildren={true}
+                checked={values && values.indexOf(name) > -1}
+                value={name}
+                primaryText={name}
+            />
+        ));
+    }
+
+    return (
+        <SelectField
+            multiple={true}
+            hintText="Filter Tag By"
+            value={values}
+            onChange={handleChange}
+            style={styles}
+        >
+            {menuItems(values)}
+        </SelectField>
+    );
+}
+
+
+export default BoomSelectField;
