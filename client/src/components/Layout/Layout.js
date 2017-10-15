@@ -33,19 +33,14 @@ import './styles.css';
 // import FlatButton from 'material-ui/FlatButton';
 import { ContentContainer }  from '../../containers/Content/';
 import { ItemGrid } from '../../containers/ItemGrid/'
-import ItemData from '../ItemData/ItemData'
+import ItemData from '../../containers/ItemData/'
 
 class Layout extends Component {
     render() {
-        // const { children } = this.props;
 
         Layout.propTypes = {
             children: PropTypes.node
         };
-
-        // const { itemsData } = ItemData
-
-        // console.log( itemsData )
 
         return (
             <div className="appContentWrapper">

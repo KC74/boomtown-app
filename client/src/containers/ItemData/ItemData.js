@@ -3,6 +3,8 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import BoomButton from '../../components/Buttons/Buttons'
 import Gravatar from 'react-gravatar'
 import Masonry from 'react-masonry-component';
+import { connect } from 'react-redux'
+import { getCardItems } from '../../actions'
 
 class ItemData extends Component {
 
@@ -16,26 +18,28 @@ class ItemData extends Component {
 
 
     componentDidMount() {
-        fetch('http://localhost:3001/items')
-        .then( response => {
-            return response.json()
-        })
-        .then( data => {
-            this.setState({ itemsData: data})
-        })
 
-        fetch ('http://localhost:3001/users')
-        .then( response => {
-            return response.json()
-        })
-        .then( data => {
-            this.setState({ usersData: data })
-        })
+        this.props.getCardItems()
+        // fetch('http://localhost:3001/items')
+        // .then( response => {
+        //     return response.json()
+        // })
+        // .then( data => {
+        //     this.setState({ itemsData: data})
+        // })
+
+        // fetch ('http://localhost:3001/users')
+        // .then( response => {
+        //     return response.json()
+        // })
+        // .then( data => {
+        //     this.setState({ usersData: data })
+        // })
     }
 
     render() {
-        const { itemsData } = this.state
-        const { usersData } = this.state
+        const { items } = this.props
+        const { users } = this.props
 
         return (
             // TODO
@@ -44,7 +48,7 @@ class ItemData extends Component {
              */  
             <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}> 
                 {
-                    itemsData.map((item) => {
+                   items.map((item) => {
                         let currentEmail = ''
 
                         return (
@@ -61,12 +65,12 @@ class ItemData extends Component {
                                     </CardMedia>
                                     <CardHeader  
                                         title={
-                                                usersData.map((user) => {
+                                                users.map((user) => {
                                                     if( user.id === item.itemOwner) {
                                                         currentEmail = user.email
                                                         return user.fullName
                                                     }
-                                                    return null
+                                                    return;
                                                 })
                                             }
                                         subtitle={new Date(item.createdOn).toUTCString()}
@@ -93,4 +97,14 @@ class ItemData extends Component {
     }
 }
 
-export default ItemData;
+// const mapStateToProps = (store) => {
+//     return {
+//         users: store.users
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch) => { 
+//     return { getCardItems() }
+// }
+
+export default connect(store => store.cardsData, { getCardItems })(ItemData)
