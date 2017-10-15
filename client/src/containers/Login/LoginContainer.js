@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Login from './Login';
 
 class LoginContainer extends Component {
 
-    static propTypes = {
-    };
+    // static propTypes = {
+    // };
 
     login = () => {
         console.log('You clicked the login button.');

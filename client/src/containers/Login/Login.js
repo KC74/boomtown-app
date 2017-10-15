@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom'
+
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
@@ -32,9 +34,11 @@ const Login = ({ login }) => (
                         <div>
                             <ValidatedTextField label="Password" />
                         </div>
-                        <RaisedButton className="enterButton" primary fullWidth type="submit">
-                            Enter
-                        </RaisedButton>
+                        <Link exact to='/'>
+                            <RaisedButton className="enterButton" primary fullWidth type="submit">
+                                Enter
+                            </RaisedButton>
+                        </Link>
                     </form>
                 </div>
             </Paper>

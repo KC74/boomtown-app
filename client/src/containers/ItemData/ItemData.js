@@ -5,6 +5,7 @@ import Gravatar from 'react-gravatar'
 import Masonry from 'react-masonry-component';
 import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
+import CircularProgress from 'material-ui/CircularProgress';
 
 class ItemData extends Component {
 
@@ -20,6 +21,12 @@ class ItemData extends Component {
     componentDidMount() {
 
         this.props.getCardItems()
+
+        /**
+         * Old code here for reference
+         */
+        ///////////////////////////////////////////////////////////////
+        //
         // fetch('http://localhost:3001/items')
         // .then( response => {
         //     return response.json()
@@ -35,6 +42,8 @@ class ItemData extends Component {
         // .then( data => {
         //     this.setState({ usersData: data })
         // })
+        //
+        ///////////////////////////////////////////////////////////////
     }
 
     render() {
@@ -45,58 +54,64 @@ class ItemData extends Component {
             // TODO
             /**
              * Separate UL into another component which then takes a mapped out itemData as props
-             */  
-            <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}> 
-                {
-                   items.map((item) => {
-                        let currentEmail = ''
+             */
+            this.props.isLoading
+                ? <div className="loadingIcon" style={{position: "absolute", top: "50%",left: "50%"}}><CircularProgress size={80} thickness={5}/></div>
+                : <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}>
+                    {
+                        items.map((item) => {
+                            let currentEmail = ''
 
-                        return (
-                            <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
-                                <Card className="card-item">
-                                    <CardMedia
-                                        overlay={
-                                            item.available === false 
-                                            ? <CardTitle subtitle="Unavailable" style={{ position: "relative" }} />
-                                            : null
+                            return (
+                                <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
+                                    <Card className="card-item">
+                                        <CardMedia
+                                            overlay={
+                                                item.available === false
+                                                    ? <CardTitle subtitle="Unavailable" style={{ position: "relative" }} />
+                                                    : null
                                             }
-                                    >
-                                        <img src={item.imageUrl} alt="" />
-                                    </CardMedia>
-                                    <CardHeader  
-                                        title={
+                                        >
+                                            <img src={item.imageUrl} alt="" />
+                                        </CardMedia>
+                                        <CardHeader
+                                            title={
                                                 users.map((user) => {
-                                                    if( user.id === item.itemOwner) {
+                                                    if (user.id === item.itemOwner) {
                                                         currentEmail = user.email
                                                         return user.fullName
                                                     }
-                                                    return;
+                                                    return null;
                                                 })
                                             }
-                                        subtitle={new Date(item.createdOn).toUTCString()}
-                                        avatar={<Gravatar style={{ borderRadius: "50%"}} email={currentEmail} />}
-                                    />
-                                    <CardTitle title={item.title} subtitle={ (item.tags).toString().replace(",", ", ") } />
-                                    <CardText>
-                                        {item.description}
-                                    </CardText>
-                                    <CardActions>
-                                        {
-                                            item.available 
-                                            ? <BoomButton label="Borrow" bgcolor="rgb(38, 50, 56)" styles={{ marginLeft: "0" }}/>
-                                            : null
-                                        }
-                                    </CardActions>
-                                </Card>
-                            </div>           
-                        )
-                    })
-                }
-            </Masonry>
+                                            subtitle={new Date(item.createdOn).toUTCString()}
+                                            avatar={<Gravatar style={{ borderRadius: "50%" }} email={currentEmail} />}
+                                        />
+                                        <CardTitle title={item.title} subtitle={(item.tags).toString().replace(",", ", ")} />
+                                        <CardText>
+                                            {item.description}
+                                        </CardText>
+                                        <CardActions>
+                                            {
+                                                item.available
+                                                    ? <BoomButton label="Borrow" bgcolor="rgb(38, 50, 56)" styles={{ marginLeft: "0" }} />
+                                                    : null
+                                            }
+                                        </CardActions>
+                                    </Card>
+                                </div>
+                            )
+                        })
+                    }
+                </Masonry>
         )
     }
 }
-
+/**
+ * OLD CODE HERE FOR REFERENCE
+ */
+///////////////////////////////////////////////////////////////
+//
 // const mapStateToProps = (store) => {
 //     return {
 //         users: store.users
@@ -106,5 +121,7 @@ class ItemData extends Component {
 // const mapDispatchToProps = (dispatch) => { 
 //     return { getCardItems() }
 // }
+//
+///////////////////////////////////////////////////////////////
 
 export default connect(store => store.cardsData, { getCardItems })(ItemData)

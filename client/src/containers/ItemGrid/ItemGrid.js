@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ItemData from '../ItemData'
 
 class ItemGrid extends Component {
+
 
     render() {
         const styles = {
@@ -9,7 +11,7 @@ class ItemGrid extends Component {
 
         return (
             <div className="card-item-grid" style={styles}>
-                { this.props.children }
+                <ItemData/>
             </div>
         );
     }

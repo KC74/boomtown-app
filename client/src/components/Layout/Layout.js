@@ -29,14 +29,14 @@ import './styles.css';
 // export default Layout;
 
 // ---------------------------------------
-// import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui';
-// import FlatButton from 'material-ui/FlatButton';
 import { ContentContainer }  from '../../containers/Content/';
-import { ItemGrid } from '../../containers/ItemGrid/'
-import ItemData from '../../containers/ItemData/'
+// import ItemData from '../../containers/ItemData/'
+// import Login from '../../containers/Login/'
 
 class Layout extends Component {
     render() {
+
+        const { children } = this.props
 
         Layout.propTypes = {
             children: PropTypes.node
@@ -50,9 +50,7 @@ class Layout extends Component {
                 </div>
                 <div className="appContent">
                     <ContentContainer>
-                        <ItemGrid>
-                            <ItemData/>
-                        </ItemGrid>
+                        { children }
                     </ContentContainer>
                 </div>
 

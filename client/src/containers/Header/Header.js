@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import Logo from '../../components/Logo/';
 import BoomSelectField from '../../components/SelectField/SelectField'
 import BoomButton from '../../components/Buttons/Buttons'
@@ -34,28 +35,26 @@ class Header extends Component {
 
     render() {
         return (
-            <div className="header-container">
-                <AppBar
-                    style={appbarStyles}
-                    titleStyle={{ display: 'none' }}
-                    showMenuIconButton={false}
-                >
-                    <div className="left-container">
-                        <div className="logo-container"><Logo /></div>
-                        <div className="selectField-container">
-                            <BoomSelectField 
-                                values={this.state.values}
-                                handleChange={this.handleChange}
-                                labels={this.state.labels} 
-                            />
-                         </div>
-                    </div>
-                    <div className="right-container">
-                        <BoomButton label="My Profile" primary={true} styles={{ margin: "15px 0 15px 15px" }} />
-                        <BoomButton label="Logout" bgcolor="rgb(38, 50, 56)" styles={{ margin: "15px 0 15px 15px" }} />
-                    </div>
-                </AppBar>
-            </div>
+            <AppBar
+                style={appbarStyles}
+                titleStyle={{ display: 'none' }}
+                showMenuIconButton={false}
+            >
+                <div className="left-container">
+                    <div className="logo-container"><Link to='/'><Logo /></Link></div>
+                    <div className="selectField-container">
+                        <BoomSelectField 
+                            values={this.state.values}
+                            handleChange={this.handleChange}
+                            labels={this.state.labels} 
+                        />
+                        </div>
+                </div>
+                <div className="right-container">
+                    <BoomButton label="My Profile" primary={true} styles={{ margin: "15px 0 15px 15px" }} />
+                    <Link to='/login'><BoomButton label="Logout" bgcolor="rgb(38, 50, 56)" styles={{ margin: "15px 0 15px 15px" }} /></Link>
+                </div>
+            </AppBar>
         );
     }
 }
