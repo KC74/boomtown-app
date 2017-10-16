@@ -51,6 +51,8 @@ $ npm run dev
  - Separate into more components
  - Add share and borrow features
  - Add user sign up
+ - Add tag filtering feature
+ - Add propType validations
  
 # Author
 #### Kenneth Chow
