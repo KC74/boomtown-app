@@ -8,7 +8,6 @@ class CardItem extends Component {
     render() {
         const item = this.props
         let currentEmail = ''
-        console.log(item)
         
         return (
             <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
