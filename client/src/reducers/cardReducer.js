@@ -1,4 +1,3 @@
-
 const initialState = {
     users: [],
     items: [],
@@ -16,10 +15,11 @@ const mergeUsersItems = ( users, items ) => {
     })
 }
 
-const getAllItems = (items) => {
+const mergeItemsUsers = ( users, items ) => {
     return items.map( item => {
         return {
             ...item,
+            user: users.filter( user => item.itemOwner === user.id )
         }
     })
 }
@@ -40,8 +40,8 @@ export default ( state = initialState, action ) => {
             return {
                 ...state,
                 users: mergeUsersItems(action.users, action.items),
-                items: getAllItems(action.items),
-                isLoading: false
+                items: mergeItemsUsers(action.users, action.items),
+                isLoading: false,
             }
         case 'GET_USERS_ERROR':
         case 'GET_CARD_ITEMS_ERROR':

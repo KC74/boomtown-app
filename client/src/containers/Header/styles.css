@@ -15,3 +15,13 @@
 .logo-container {
     margin: 0 24px;
 }
+
+.header-appbar {
+    width: 100vw;
+    background: #ffffff !important;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 65px;
+    justify-content: space-between;
+    padding: 0;
+}

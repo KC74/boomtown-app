@@ -55,6 +55,16 @@ table {
     box-sizing: border-box;
 }
 
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
 body {
     background: linear-gradient(#6F86D6, #48C6EF);
     background-attachment: fixed;

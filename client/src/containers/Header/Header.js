@@ -6,17 +6,6 @@ import BoomButton from '../../components/Buttons/Buttons'
 import AppBar from 'material-ui/AppBar'
 import './styles.css';
 
-
-const appbarStyles = {
-    width: '100vw',
-    backgroundColor: '#fff',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    height: '65px',
-    justifyContent: 'space-between',
-    padding: '0',
-}
-
 class Header extends Component {
 
     state = {
@@ -28,7 +17,8 @@ class Header extends Component {
             'Recreational Equipment',
             'Sporting Goods',
         ],
-        values: []
+        values: [],
+        
     }
 
     handleChange = (event, index, values) => this.setState({ values });
@@ -36,7 +26,7 @@ class Header extends Component {
     render() {
         return (
             <AppBar
-                style={appbarStyles}
+                className="header-appbar"
                 titleStyle={{ display: 'none' }}
                 showMenuIconButton={false}
             >
