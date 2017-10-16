@@ -45,7 +45,6 @@ class Header extends Component {
                                 />
                                 : false
                         }
-
                     </div>
                 </div>
                 <div className="right-container">

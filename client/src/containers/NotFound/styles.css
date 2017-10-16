@@ -1,0 +1,27 @@
+.notfound-image {
+    height: 50%;
+    width: 50%;
+}
+
+.notfound-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.notfound-container img,
+.notfound-container h1,
+.notfound-container p {
+    margin: 1rem;
+}
+
+.notfound-container h1 {
+    font-size: 4rem;
+    margin-bottom: 0;
+}
+
+.notfound-container p {
+    margin-top: 0.25rem;
+    font-size: 1.5rem;
+}
