@@ -18,12 +18,15 @@ class Header extends Component {
             'Sporting Goods',
         ],
         values: [],
-        
+
     }
 
     handleChange = (event, index, values) => this.setState({ values });
 
     render() {
+
+        let location = window.location.href;
+
         return (
             <AppBar
                 className="header-appbar"
@@ -33,12 +36,17 @@ class Header extends Component {
                 <div className="left-container">
                     <div className="logo-container"><Link to='/'><Logo /></Link></div>
                     <div className="selectField-container">
-                        <BoomSelectField 
-                            values={this.state.values}
-                            handleChange={this.handleChange}
-                            labels={this.state.labels} 
-                        />
-                        </div>
+                        {
+                            location === 'http://localhost:3000/'
+                                ? <BoomSelectField
+                                    values={this.state.values}
+                                    handleChange={this.handleChange}
+                                    labels={this.state.labels}
+                                />
+                                : false
+                        }
+
+                    </div>
                 </div>
                 <div className="right-container">
                     <BoomButton label="My Profile" primary={true} styles={{ margin: "15px 0 15px 15px" }} />

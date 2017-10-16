@@ -42,15 +42,13 @@ class ProfileContainer extends Component {
             return false
         })
 
-        console.log(userData)
-
         return (
             cardsData.isLoading
                 ? <div className="loadingIcon" style={{ position: "absolute", top: "50%", left: "50%" }}><CircularProgress size={80} thickness={5} /></div>
                 :
                 <div className="card-item-grid" style={{ width: '100%' }}>
                     <div className="paper-wrapper" style={{ width: '75%', margin: '0 auto' }}>
-                        <Paper style={paperStyle} zDepth={2}>
+                        <Paper style={paperStyle} zDepth={1}>
                             <div className="paper-container">
                                 <div className="paper-left-container">
                                     <h1>{userData.fullName}</h1>
@@ -68,7 +66,7 @@ class ProfileContainer extends Component {
                                         <span className="items-borrowed">Items borrowed</span>
                                     </div>
                                     <div className="profile-gravatar">
-                                        <Gravatar style={{borderRadius: '50%'}}size={180} email={userData.email}/>
+                                        <Gravatar style={{borderRadius: '50%'}} size={180} email={userData.email}/>
                                     </div>
                                 </div>
                             </div>
