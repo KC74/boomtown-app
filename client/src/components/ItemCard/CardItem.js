@@ -8,12 +8,13 @@ class CardItem extends Component {
     render() {
         const item = this.props
         let currentEmail = ''
+        console.log(item)
         
         return (
             <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
                 <Card className="card-item">
                     <CardMedia
-                        overlay={
+                        overlay= {
                             item.availability === false
                                 ? <CardTitle subtitle="Unavailable" style={{ position: "relative" }} />
                                 : null
@@ -40,7 +41,7 @@ class CardItem extends Component {
                     </CardText>
                     <CardActions>
                         {
-                            item.available
+                            item.availability
                                 ? <BoomButton label="Borrow" bgcolor="rgb(38, 50, 56)" styles={{ marginLeft: "0" }} />
                                 : null
                         }

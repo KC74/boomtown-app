@@ -21,6 +21,7 @@ class ItemData extends Component {
                     {
                         cardsData.items.map((item) =>
                             <CardItem
+                                key={item.id}
                                 id={item.id}
                                 availability={item.available}
                                 borrower={item.borrower}

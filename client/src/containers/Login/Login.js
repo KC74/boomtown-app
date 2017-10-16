@@ -34,7 +34,7 @@ const Login = ({ login }) => (
                         <div>
                             <ValidatedTextField label="Password" />
                         </div>
-                        <Link exact to='/'>
+                        <Link to='/'>
                             <RaisedButton className="enterButton" primary fullWidth type="submit">
                                 Enter
                             </RaisedButton>
