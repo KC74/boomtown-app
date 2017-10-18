@@ -7,6 +7,8 @@ const initialState = {
 }
 
 const mergeUsersItems = ( users, items ) => {
+    // console.log(users)
+    // return users
     return users.map( user => {
         return {
             ...user,
@@ -16,12 +18,14 @@ const mergeUsersItems = ( users, items ) => {
 }
 
 const mergeItemsUsers = ( users, items ) => {
+    // console.log(items)
+    // return items
     return items.map( item => {
         return {
             ...item,
-            user: users.filter( user => item.itemOwner === user.id )
+            // user: users.filter( user => item.itemOwner === user.id )
         }
-    })
+    }) 
 }
 
 export default ( state = initialState, action ) => {
