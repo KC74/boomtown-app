@@ -20,18 +20,18 @@ const getUsersError = (error) => {
     }
 }
 
-export const getUsers = (dispatch) => {
+export const getUsers = async (dispatch) => {
     dispatch(getUsersBegin())
-    return async (dispatch) => {
-        try {
-            const userData = await fetch(`${mainURL}/users`)
-            const user = await userData.json()
-            dispatch(getUsersSuccess())
-            return user
-        } catch(e) {
-            console.log(e)
-        }
+    try {
+        const userData = await fetch(`${mainURL}/users`)
+        const user = await userData.json()
+        dispatch(getUsersSuccess())
+        console.log(user)
+        return user
+    } catch (e) {
+        dispatch(getUsersError(e))
     }
+}
         // fetch(`${mainURL}/users`)
         // .then(resp => {
         //     dispatch(getUsersSuccess())
@@ -40,19 +40,3 @@ export const getUsers = (dispatch) => {
         // .catch(error => {
         //     dispatch(getUsersError(error))
         // })
-
-    // return async function getData() {
-    //     try {
-    //         const data = await rp({
-    //             uri: `${mainURL}/users`,
-    //             json: true
-    //         })
-
-    //         console.log(data)
-
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-
-}

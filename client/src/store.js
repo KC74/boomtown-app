@@ -12,7 +12,7 @@ const configStore = ( initialState ) => {
     const store = createStoreWithMiddleware(rootReducer, initialState)
 
 
-    // console.log(store.getState())
+    console.log(store.getState())
     
     return store
 }

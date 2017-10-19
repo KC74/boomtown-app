@@ -28,36 +28,29 @@ export const getCardItems = () => {
         dispatch(getCardItemsBegin())
         try {
             const items = await fetch(`${mainURL}/items`);
-            const users = await getUsers(dispatch);
+            const users = await getUsers(dispatch)
             const itemData = await items.json()
-            console.log(users)
+
 
             dispatch(getCardItemsSuccess(itemData, users))
         } catch(e) {
             dispatch(getCardItemsError(e))
         } 
                
-        //  return fetch(`${mainURL}/items`)
-        // .then(resp => resp.json())
-        // .then(items => {
-        //     return getUsers(dispatch).then( users => {
-        //         dispatch(getCardItemsSuccess(items, users))
-        //     })
-        // })
-        // .catch(error => {
-        //     dispatch(getCardItemsError(error))
-        // })
-        // return async function getData(dispatch) {
-        //     try {
-        //         const data = await rp({
-        //             uri: `${mainURL}/items`,
-        //             json: true
-        //         })
-
-        //         console.log(data)
-        //     } catch(e) {
-        //         console.log(e)
-        //     }
-        // }
     }
 }
+
+/////////////////////////////////////
+// 
+// OLD CODE FOR REFERENCE
+//
+//  return fetch(`${mainURL}/items`)
+// .then(resp => resp.json())
+// .then(items => {
+//     return getUsers(dispatch).then( users => {
+//         dispatch(getCardItemsSuccess(items, users))
+//     })
+// })
+// .catch(error => {
+//     dispatch(getCardItemsError(error))
+// })
