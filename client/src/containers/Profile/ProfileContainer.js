@@ -31,10 +31,7 @@ class ProfileContainer extends Component {
         cardsData.users.find((user) => {
             if (user.id === match.params.id) {
                 return userData = {
-                    id: user.id,
-                    fullName: user.fullName,
-                    email: user.email,
-                    bio: user.bio,
+                    ...user,
                     itemsShared: user.items.length,
                     itemsBorrowed: 0
                 }
@@ -77,16 +74,7 @@ class ProfileContainer extends Component {
                             filteredItems.map(item => {
                                 return <CardItem
                                     key={item.id}
-                                    id={item.id}
-                                    availability={item.available}
-                                    borrower={item.borrower}
-                                    createdOn={item.createdOn}
-                                    description={item.description}
-                                    imageUrl={item.imageUrl}
-                                    itemOwner={item.itemOwner}
-                                    tags={item.tags}
-                                    title={item.title}
-                                    user={item.user}
+                                    {...item}
                                 />
                             })
 

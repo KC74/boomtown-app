@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 class CardItem extends Component {
     render() {
         const item = this.props
-        let currentEmail = ''
+        let currentEmail = 'email@default.com'
         
         return (
             <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
