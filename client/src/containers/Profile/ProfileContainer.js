@@ -24,7 +24,7 @@ class ProfileContainer extends Component {
 
         const { match } = this.props
         const { cardsData } = this.props.cardsData
-        const filteredItems = cardsData.items.filter(item => item.itemOwner === match.params.id)
+        const filteredItems = cardsData.items.filter(item => item.itemowner === match.params.id)
 
         let userData = {}
 

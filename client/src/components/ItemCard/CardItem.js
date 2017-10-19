@@ -19,19 +19,19 @@ class CardItem extends Component {
                                 : null
                         }
                     >
-                        <img src={item.imageUrl} alt="" />
+                        <img src={item.imageurl} alt="" />
                     </CardMedia>
                     <CardHeader
                         title={
                             item.user.map((user, index) => {
-                                if (user.id === item.itemOwner) {
+                                if (user.id === item.itemowner) {
                                     currentEmail = user.email
                                     return <Link key={index} to={`/profile/${user.id}`}>{user.fullName}</Link>
                                 }
                                 return null;
                             })
                         }
-                        subtitle={new Date(item.createdOn).toUTCString()}
+                        subtitle={new Date(item.createdon).toUTCString()}
                         avatar={<Gravatar style={{ borderRadius: "50%" }} email={currentEmail} />}
                     />
                     <CardTitle title={item.title} subtitle={(item.tags).toString().replace(",", ", ")} />
