@@ -26,17 +26,22 @@ export const getUsers = async (dispatch) => {
         const userData = await fetch(`${mainURL}/users`)
         const user = await userData.json()
         dispatch(getUsersSuccess())
-        console.log(user)
+
         return user
     } catch (e) {
         dispatch(getUsersError(e))
     }
 }
-        // fetch(`${mainURL}/users`)
-        // .then(resp => {
-        //     dispatch(getUsersSuccess())
-        //     return resp.json()
-        // })
-        // .catch(error => {
-        //     dispatch(getUsersError(error))
-        // })
+
+/////////////////////////////////////
+// 
+// OLD CODE FOR REFERENCE
+//
+// fetch(`${mainURL}/users`)
+// .then(resp => {
+//     dispatch(getUsersSuccess())
+//     return resp.json()
+// })
+// .catch(error => {
+//     dispatch(getUsersError(error))
+// })

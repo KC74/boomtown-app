@@ -21,17 +21,8 @@ class ItemData extends Component {
                     {
                         cardsData.items.map((item) =>
                             <CardItem
-                                key={item.id}
-                                id={item.id}
-                                availability={item.available}
-                                borrower={item.borrower}
-                                createdOn={item.createdOn}
-                                description={item.description}
-                                imageUrl={item.imageUrl}
-                                itemOwner={item.itemOwner}
-                                tags={item.tags}
-                                title={item.title}
-                                user={item.user}
+                                key={(Math.random() * 1000).toFixed(2)}
+                                {...item}
                             />
                         )
                     }

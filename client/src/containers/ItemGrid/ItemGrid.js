@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemData from '../ItemData'
 import { connect } from 'react-redux'
-import { getCardItems, getUsers } from '../../actions'
+import { getCardItems } from '../../actions'
 
 class ItemGrid extends Component {
 
@@ -66,4 +66,4 @@ const mapStateToProps = (store) => {
 ///////////////////////////////////////////////////////////////
 
 // export default connect(store => store.cardsData, { getCardItems })(ItemData)
-export default connect(mapStateToProps, { getCardItems, getUsers })(ItemGrid)
+export default connect(mapStateToProps, { getCardItems })(ItemGrid)
