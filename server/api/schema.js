@@ -5,7 +5,7 @@ import resolvers from './resolver';
 const typeDefs = `
 type User {
     id: ID!
-    fullName: String!
+    fullname: String!
     bio: String
     email: String!
     owneditems: [Items]

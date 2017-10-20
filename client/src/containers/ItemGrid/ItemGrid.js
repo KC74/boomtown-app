@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import ItemData from '../ItemData'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 class ItemGrid extends Component {
 
     componentDidMount() {
 
-        this.props.getCardItems()
+        // this.props.getCardItems()
 
         /**
          * Old code here for reference
@@ -38,27 +40,68 @@ class ItemGrid extends Component {
             width: "100%",
         }
 
-        const { cardsData } = this.props
-
+        
+        const { items, loading } = this.props.data
+        
+        console.log('ItemGrid:', items, loading)
         return (
             <div className="card-item-grid" style={styles}>
-                <ItemData cardsData={cardsData}/>
+                <ItemData cardsData={items} loading={loading}/>
             </div>
         );
     }
 }
+
+const fetchCardData = gql`
+query {
+    items {
+      id
+      title
+      description
+      imageurl
+      tags
+          itemowner {
+        id
+        fullname
+        bio
+        email
+        owneditems {
+          id
+          title
+          borrower {
+            id
+            fullname
+          }
+        }
+              borroweditems {
+                id
+          title
+              }
+      }
+      createdon
+      available
+      borrower {
+        id
+        fullname
+      }
+    }
+  }
+`;
+
+
+export default graphql(fetchCardData)(ItemGrid);
 
 /**
  * OLD CODE HERE FOR REFERENCE
  */
 ///////////////////////////////////////////////////////////////
 //
-const mapStateToProps = (store) => {
-    return {
-        cardsData: store
-    }
-}
-
+// const mapStateToProps = (store) => {
+//     return {
+//         cardsData: store
+//     }
+// }
+//
 // const mapDispatchToProps = (dispatch) => { 
 //     return { getCardItems() }
 // }
@@ -66,4 +109,4 @@ const mapStateToProps = (store) => {
 ///////////////////////////////////////////////////////////////
 
 // export default connect(store => store.cardsData, { getCardItems })(ItemData)
-export default connect(mapStateToProps, { getCardItems })(ItemGrid)
+// export default connect(mapStateToProps, { getCardItems })(ItemGrid)

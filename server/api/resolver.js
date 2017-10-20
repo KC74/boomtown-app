@@ -45,7 +45,7 @@ const resolveFunctions = {
       return getItems()
     },
     item(root, { id }) {
-      return fetch(`http://localhost:3001/${item.itemowner}`)
+      return fetch(`http://localhost:3001/items/${id}`)
       .then( res => res.json() )
       .catch( err => console.log(err) )
     }

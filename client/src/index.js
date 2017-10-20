@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { ApolloProvider } from 'react-apollo';
 
 import {
     BrowserRouter as Router,
@@ -15,21 +15,22 @@ import Layout from './components/Layout';
 import Routes from './routes/'
 
 import './index.css';
+import client from './config/apolloClient';
 
 const store = configStore()
 
 class Boomtown extends Component {
     render() {
         return (
-            <Provider store={store}>
-                <MuiThemeProvider muiTheme={muiTheme}>
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <ApolloProvider client={client} store={store}>
                     <Router>
                         <Layout>
                             <Routes />
                         </Layout>
                     </Router>
-                </MuiThemeProvider>
-            </Provider>
+                </ApolloProvider> 
+            </MuiThemeProvider>
         )
     }
 }

@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux'
-import cardReducer from './cardReducer'
+import { combineReducers } from 'redux';
+import client from '../config/apolloClient';
+import cardReducer from './cardReducer';
 
 export const rootReducer = combineReducers({
-    cardsData: cardReducer
-})
+    apollo: client.reducer(),
+    user: cardReducer
+});

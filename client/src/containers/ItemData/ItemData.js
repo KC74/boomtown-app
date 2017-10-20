@@ -7,19 +7,14 @@ import CircularProgress from 'material-ui/CircularProgress';
 class ItemData extends Component {
 
     render() {
-
-        const { cardsData } = this.props.cardsData
+        const { cardsData, loading } = this.props
+        console.log('ItemData:', cardsData, loading)
         return (
-            // TODO
-            /**
-             * Separate UL into another component which then takes a mapped out itemData as props
-             */
-
-            cardsData.isLoading
+            loading
                 ? <div className="loadingIcon" style={{ position: "absolute", top: "50%", left: "50%" }}><CircularProgress size={80} thickness={5} /></div>
                 : <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}>
                     {
-                        cardsData.items.map((item) =>
+                        cardsData.map((item) =>
                             <CardItem
                                 key={(Math.random() * 1000).toFixed(2)}
                                 {...item}

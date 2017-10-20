@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { getCardItems, getUsers } from '../../actions'
 import { CardItem } from '../../components/ItemCard/'
 import Masonry from 'react-masonry-component';
 import CircularProgress from 'material-ui/CircularProgress';
 import Paper from 'material-ui/Paper';
 import Gravatar from 'react-gravatar'
+
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import './styles.css'
 
@@ -92,4 +95,13 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps, { getCardItems, getUsers })(ProfileContainer)
+const fetchMovies = gql`
+query fetchMovies {
+  movies {
+    title
+  }
+}
+`;
+
+// export default connect(mapStateToProps, { getCardItems, getUsers })(ProfileContainer)
+export default graphql(fetchMovies, { getCardItems })(ProfileContainer);
