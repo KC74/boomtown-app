@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemData from '../ItemData'
 // import { connect } from 'react-redux'
-import { getCardItems } from '../../actions'
+// import { getCardItems } from '../../actions'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 

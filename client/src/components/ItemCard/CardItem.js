@@ -6,41 +6,34 @@ import { Link } from 'react-router-dom'
 
 class CardItem extends Component {
     render() {
-        const item = this.props
+
+        const { id, title, description, available, borrower, createdon, imageurl, itemowner, tags } = this.props
         let currentEmail = 'email@default.com'
         
         return (
-            <div className="card-wrapper" key={item.id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
+            <div className="card-wrapper" key={id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
                 <Card className="card-item">
                     <CardMedia
                         overlay= {
-                            item.availability === false
+                            available === false
                                 ? <CardTitle subtitle="Unavailable" style={{ position: "relative" }} />
                                 : null
                         }
                     >
-                        <img src={item.imageurl} alt="" />
+                        <img src={imageurl} alt="" />
                     </CardMedia>
                     <CardHeader
-                        title={
-                            item.user.map((user, index) => {
-                                if (user.id === item.itemowner) {
-                                    currentEmail = user.email
-                                    return <Link key={index} to={`/profile/${user.id}`}>{user.fullName}</Link>
-                                }
-                                return null;
-                            })
-                        }
-                        subtitle={new Date(item.createdon).toUTCString()}
-                        avatar={<Gravatar style={{ borderRadius: "50%" }} email={currentEmail} />}
+                        title={<Link key={itemowner.id} to={`/profile/${itemowner.id}`}>{itemowner.fullname}</Link>}
+                        subtitle={new Date(createdon).toUTCString()}
+                        avatar={<Gravatar style={{ borderRadius: "50%" }} email={itemowner.email} />}
                     />
-                    <CardTitle title={item.title} subtitle={(item.tags).toString().replace(",", ", ")} />
+                    <CardTitle title={title} subtitle={(tags).toString().replace(",", ", ")} />
                     <CardText>
-                        {item.description}
+                        {description}
                     </CardText>
                     <CardActions>
                         {
-                            item.availability
+                            available
                                 ? <BoomButton label="Borrow" bgcolor="rgb(38, 50, 56)" styles={{ marginLeft: "0" }} />
                                 : null
                         }
