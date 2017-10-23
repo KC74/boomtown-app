@@ -274,6 +274,32 @@
       "createdon": "2017-09-15 16:06:12.503874-07",
       "available": true,
       "borrower": null
+    },
+    {
+      "title": "Sir Meowington IV",
+      "description": "Meow meow meow",
+      "imageurl": "https://thefailedcritic.files.wordpress.com/2015/01/puss-in-boots.gif",
+      "tags": [
+        "Pet"
+      ],
+      "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
+      "createdon": "2017-10-20 11:22:52.914-07",
+      "available": true,
+      "borrower": null,
+      "id": 22
+    },
+    {
+      "title": "Lamborghini LP500",
+      "description": "VROoOOoOoOooOOm",
+      "imageurl": "https://i.ytimg.com/vi/0LgZFmUMrwI/maxresdefault.jpg",
+      "tags": [
+        "Car"
+      ],
+      "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
+      "createdon": "2017-10-20 14:11:40.144-07",
+      "available": true,
+      "borrower": null,
+      "id": 23
     }
   ],
   "users": [

@@ -1,81 +1,84 @@
-import fetch from 'node-fetch';
+
 // import { data } from './db'
-
-async function getUsers() {
-  const data = await fetch('http://localhost:3001/users')
-  const normalized = await data.json()
-
-  return normalized;
-}
-
-async function getItems() {
-  const data = await fetch('http://localhost:3001/items')
-  const normalized = await data.json()
-
-  return normalized;
-}
-
-
+import { getItems, getUsers, getOwnedItems, getBorrowedItems, createNewItem } from './jsonHelpers'
+import fetch from 'node-fetch'
 
 const resolveFunctions = {
   // Resolvers go here...
   Query: {
     users() {
       try {
-
         return getUsers()
-
       } catch (e) {
-
         return e
       }
     },
-    async user(root, { id }) {
+    user(root, { id }, context) {
       try {
-        const data = await fetch(`http://localhost:3001/users/${id}`)
-        const normalized = data.json()
-
-        return normalized
-
-      } catch(e) {
-        console.log(e)
+        // return getUsers(id)
+        return context.loaders.SingleUser.load(id)
+      } catch (e) {
+        return console.log(e)
       }
     },
     items() {
-      return getItems()
+      try {
+        return getItems()
+      } catch (e) {
+        return console.log(e)
+      }
     },
-    item(root, { id }) {
-      return fetch(`http://localhost:3001/items/${id}`)
-      .then( res => res.json() )
-      .catch( err => console.log(err) )
+    item(root, { id }, context) {
+      try {
+        // return getItems(id)
+        return context.loaders.SingleItem.load(id)
+      } catch (e) {
+        return console.log(e)
+      }
     }
   },
 
   Items: {
     itemowner(item) {
-      return fetch(`http://localhost:3001/users/${item.itemowner}`)
-      .then( res => res.json() )
-      .catch( err => console.log(err) )
+      if (!item.itemowner) return null;
+      try {
+        return getUsers(item.itemowner)
+      } catch (e) {
+        return console.log(e)
+      }
     },
     borrower(item) {
-      if( !item.borrower ) return null
-      return fetch(`http://localhost:3001/users/${item.borrower}`)
-      .then(res => res.json() )
-      .catch( err => console.log(err) )
+      if (!item.borrower) return null;
+      try {
+        return getUsers(item.borrower)
+      } catch (e) {
+        return console.log(e)
+      }
     }
   },
   User: {
-    async owneditems(user) {
-      const res = await fetch(`http://localhost:3001/items/?itemowner=${user.id}`)
-      const items = await res.json()
-
-      return items
+    owneditems(user, args, context) {
+      if (!user.id) return null;
+      try {
+        // return getOwnedItems(user.id)
+        return context.loaders.UserOwnedItems.load(user.id)
+      } catch (e) {
+        return console.log(e)
+      }
     },
-    async borroweditems(user) {
-      const res = await fetch(`http://localhost:3001/items/?borrower=${user.id}`)
-      const items = await res.json()
-
-      return items
+    borroweditems(user, args, context) {
+      if (!user.id) return null;
+      try {
+        // return getBorrowedItems(user.id)
+        return context.loaders.UserBorrowedItems.load(user.id)
+      } catch (e) {
+        return console.log(e)
+      }
+    }
+  },
+  Mutation: {
+    addItem(root, { title, description, imageurl, tags, itemowner }) {
+      return createNewItem(title, description, imageurl, tags, itemowner)
     }
   }
 };

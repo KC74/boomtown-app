@@ -7,34 +7,6 @@ import gql from 'graphql-tag';
 
 class ItemGrid extends Component {
 
-    componentDidMount() {
-
-        // this.props.getCardItems()
-
-        /**
-         * Old code here for reference
-         */
-        ///////////////////////////////////////////////////////////////
-        //
-        // fetch('http://localhost:3001/items')
-        // .then( response => {
-        //     return response.json()
-        // })
-        // .then( data => {
-        //     this.setState({ itemsData: data})
-        // })
-
-        // fetch ('http://localhost:3001/users')
-        // .then( response => {
-        //     return response.json()
-        // })
-        // .then( data => {
-        //     this.setState({ usersData: data })
-        // })
-        //
-        ///////////////////////////////////////////////////////////////
-    }
-
     render() {
         const styles = {
             width: "100%",
@@ -42,6 +14,8 @@ class ItemGrid extends Component {
 
         
         const { items, loading } = this.props.data
+
+        console.log(this.props)
         
         console.log('ItemGrid:', items, loading)
         return (
@@ -94,6 +68,35 @@ export default graphql(fetchCardData)(ItemGrid);
 /**
  * OLD CODE HERE FOR REFERENCE
  */
+
+// componentDidMount() {
+
+    // this.props.getCardItems()
+
+    /**
+     * Old code here for reference
+     */
+    ///////////////////////////////////////////////////////////////
+    //
+    // fetch('http://localhost:3001/items')
+    // .then( response => {
+    //     return response.json()
+    // })
+    // .then( data => {
+    //     this.setState({ itemsData: data})
+    // })
+
+    // fetch ('http://localhost:3001/users')
+    // .then( response => {
+    //     return response.json()
+    // })
+    // .then( data => {
+    //     this.setState({ usersData: data })
+    // })
+    //
+    ///////////////////////////////////////////////////////////////
+// }
+
 ///////////////////////////////////////////////////////////////
 //
 // const mapStateToProps = (store) => {
