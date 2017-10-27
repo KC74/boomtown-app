@@ -1,7 +1,15 @@
 
 // import { data } from './db'
-import { getItems, getUsers, getOwnedItems, getBorrowedItems, createNewItem } from './jsonHelpers'
-import fetch from 'node-fetch'
+import { 
+  getItems, 
+  getUsers, 
+  getOwnedItems, 
+  getBorrowedItems,
+  createNewItem 
+} from './resources/postgresHelpers'
+import { database } from '../index.js'
+
+// import fetch from 'node-fetch'
 
 const resolveFunctions = {
   // Resolvers go here...
@@ -10,12 +18,11 @@ const resolveFunctions = {
       try {
         return getUsers()
       } catch (e) {
-        return e
+        return console.log(e)
       }
     },
     user(root, { id }, context) {
       try {
-        // return getUsers(id)
         return context.loaders.SingleUser.load(id)
       } catch (e) {
         return console.log(e)
@@ -23,7 +30,8 @@ const resolveFunctions = {
     },
     items() {
       try {
-        return getItems()
+        // return getItems()
+        return database.getItems();
       } catch (e) {
         return console.log(e)
       }

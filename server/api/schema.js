@@ -12,15 +12,18 @@ const typeDefs = `
         borroweditems: [Items]
     }
 
+    type Tags {
+        tagsid: ID!
+        title: String!
+    }
+
     type Items {
         id: ID!
         title: String!
         description: String
         imageurl: String
-        tags: [String]
         itemowner: User!
         createdon: String!
-        available: Boolean!
         borrower: User
     }
 

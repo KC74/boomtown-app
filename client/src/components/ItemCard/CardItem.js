@@ -7,15 +7,14 @@ import { Link } from 'react-router-dom'
 class CardItem extends Component {
     render() {
 
-        const { id, title, description, available, borrower, createdon, imageurl, itemowner, tags } = this.props
-        let currentEmail = 'email@default.com'
-        
+        const { id, title, description, createdon, imageurl, itemowner, tags, borrower } = this.props
+
         return (
             <div className="card-wrapper" key={id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
                 <Card className="card-item">
                     <CardMedia
-                        overlay= {
-                            available === false
+                        overlay={
+                            borrower !== null
                                 ? <CardTitle subtitle="Unavailable" style={{ position: "relative" }} />
                                 : null
                         }
@@ -27,13 +26,15 @@ class CardItem extends Component {
                         subtitle={new Date(createdon).toUTCString()}
                         avatar={<Gravatar style={{ borderRadius: "50%" }} email={itemowner.email} />}
                     />
-                    <CardTitle title={title} subtitle={(tags).toString().replace(",", ", ")} />
+                    <CardTitle title={title} 
+                    /* subtitle={(tags).toString().replace(",", ", ")} */
+                     />
                     <CardText>
                         {description}
                     </CardText>
                     <CardActions>
                         {
-                            available
+                            !borrower
                                 ? <BoomButton label="Borrow" bgcolor="rgb(38, 50, 56)" styles={{ marginLeft: "0" }} />
                                 : null
                         }

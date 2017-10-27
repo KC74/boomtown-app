@@ -1,4 +1,4 @@
-// import { mainURL } from '../constants';
+import { mainURL } from '../../constants';
 
 // INITIAL STATE
 const initialState = {
@@ -15,44 +15,57 @@ const GET_USERS_ERROR = 'GET_USERS_ERROR';
 // ACTION CREATORS
 export const getUsersBegin = () => {
     return {
-        type: 'GET_USERS_BEGIN'
+        type: GET_USERS_BEGIN
     }
 }
 
 export const getUsersSuccess = (users) => {
     return {
-        type: 'GET_USERS_SUCCESS',
+        type: GET_USERS_SUCCESS,
         users
     }
 }
 
 export const getUsersError = (error) => {
     return {
-        type: 'GET_USERS_ERROR',
+        type: GET_USERS_ERROR,
         error
     }
 }
 
 // REDUCER
-export default ( state = initialState, action ) {
+export default ( state = initialState, action ) => {
     switch (action.type) {
-        case 'GET_USERS_BEGIN':
+        case GET_USERS_BEGIN:
             return {
             ...state,
             isLoading: true,
         }
 
-        case 'GET_USERS_SUCCESS': 
+        case GET_USERS_SUCCESS: 
             return {
                 ...state
             }
-        case 'GET_USERS_ERROR':
+        case GET_USERS_ERROR:
             return {
             ...state,
             isLoading: false
         }
         default:
             return state
+    }
+}
+
+export const getUsers = async (dispatch) => {
+    dispatch(getUsersBegin())
+    try {
+        const userData = await fetch(`${mainURL}/users`)
+        const user = await userData.json()
+        dispatch(getUsersSuccess())
+
+        return user
+    } catch (e) {
+        dispatch(getUsersError(e))
     }
 }
 
@@ -72,15 +85,3 @@ export default ( state = initialState, action ) {
 //
 // ASYNC FETCHING
 //
-// export const getUsers = async (dispatch) => {
-//     dispatch(getUsersBegin())
-//     try {
-//         const userData = await fetch(`${mainURL}/users`)
-//         const user = await userData.json()
-//         dispatch(getUsersSuccess())
-
-//         return user
-//     } catch (e) {
-//         dispatch(getUsersError(e))
-//     }
-// }

@@ -4,6 +4,7 @@ import Logo from '../../components/Logo/';
 import BoomSelectField from '../../components/SelectField/SelectField'
 import BoomButton from '../../components/Buttons/Buttons'
 import AppBar from 'material-ui/AppBar'
+
 import './styles.css';
 
 class Header extends Component {
@@ -16,6 +17,7 @@ class Header extends Component {
             'Physical Media',
             'Recreational Equipment',
             'Sporting Goods',
+            'Tools'
         ],
         values: [],
 

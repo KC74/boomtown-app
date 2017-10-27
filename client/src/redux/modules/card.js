@@ -6,6 +6,55 @@ const initialState = {
     filteredItems: []
 }
 
+// ACTIONS
+// const GET_CARD_ITEMS_BEGIN = 'GET_CARD_ITEMS_BEGIN'
+// const GET_CARD_ITEMS_SUCCESS = 'GET_CARD_ITEMS_SUCCESS'
+// const GET_CARD_ITEMS_ERROR = 'GET_CARD_ITEMS_ERROR'
+
+// const GET_USERS_BEGIN = 'GET_USERS_BEGIN';
+// const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
+// const GET_USERS_ERROR = 'GET_USERS_ERROR';
+
+
+// ACTION CREATORS
+// const getCardItemsBegin = () => {
+//     return {
+//         type: 'GET_CARD_ITEMS_BEGIN'
+//     }
+// }
+// const getCardItemsSuccess = (items) => {
+//     return {
+//         type: 'GET_CARD_ITEMS_SUCCESS', 
+//         items
+//     }
+// }
+// const getCardItemsError = (error) => {
+//     return {
+//         type: 'GET_CARD_ITEMS_ERROR', 
+//         error
+//     }
+// }
+
+// const getUsersBegin = () => {
+//     return {
+//         type: 'GET_USERS_BEGIN'
+//     }
+// }
+
+// const getUsersSuccess = (users) => {
+//     return {
+//         type: 'GET_USERS_SUCCESS',
+//         users
+//     }
+// }
+
+// const getUsersError = (error) => {
+//     return {
+//         type: 'GET_USERS_ERROR',
+//         error
+//     }
+// }
+
 const mergeUsersItems = ( users, items ) => {
     return users.map( user => {
         return {

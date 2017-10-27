@@ -1,5 +1,5 @@
 import DataLoader from 'dataloader';
-import { getOwnedItems, getBorrowedItems, getUsers, getItems } from './jsonHelpers';
+import { getOwnedItems, getBorrowedItems, getUsers, getItems } from './resources/postgresHelpers';
 export default function() {
   return {
     UserOwnedItems: new DataLoader(ids => (

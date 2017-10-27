@@ -6,7 +6,7 @@ import {
     BrowserRouter as Router,
 } from 'react-router-dom';
 
-import configStore from './store'
+import configStore from './redux/store'
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './config/theme';

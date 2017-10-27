@@ -25,6 +25,7 @@ class ProfileContainer extends Component {
         const { user } = this.props.data
         const { loading } = this.props
 
+
         if (loading) {
             return (<div className="loadingIcon" style={{ position: "absolute", top: "50%", left: "50%" }}><CircularProgress size={80} thickness={5} /></div>)
         } else if (user !== undefined) {
@@ -40,11 +41,11 @@ class ProfileContainer extends Component {
                                 <div className="paper-right-container">
                                     <div className="item-sharing-wrapper">
                                         <span className="items-shared-counter">
-                                            {}
+                                            {user.owneditems.length}
                                         </span>
                                         <span className="items-shared">Items shared</span>
                                         <span className="items-borrowed-counter">
-                                            {}
+                                            {user.borroweditems.length}
                                         </span>
                                         <span className="items-borrowed">Items borrowed</span>
                                     </div>
@@ -55,16 +56,16 @@ class ProfileContainer extends Component {
                             </div>
                         </Paper>
                     </div>
-                    {/* <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}>
+                    <Masonry className="masonry-component" enableResizableChildren={false} disableImagesLoaded={false} updateOnEachImageLoad={false}>
                         {
-                            user.borroweditems.map((item) => {
-                                <CardItem
+                            user.owneditems.map((item) => {
+                                return <CardItem
                                     key={(Math.random() * 1000).toFixed(2)}
-
+                                    {...item}
                                 />
                             })
                         }
-                    </Masonry> */}
+                    </Masonry>
                 </div>
             )
         }
@@ -73,32 +74,27 @@ class ProfileContainer extends Component {
 }
 
 const fetchCardData = gql`
-query getUser($id: ID!){
-	user(id: $id) {
-    id
-    fullname
-    bio
-    email
-    owneditems {
-      id
-      title
-      description
-      imageurl
-      tags
-      itemowner {
+    query getUser($id: ID!){
+        user(id: $id) {
         id
         fullname
         bio
         email
-      }
-      createdon
-      available
+        owneditems {
+            id
+            title
+            description
+            imageurl
+            itemowner {
+                id
+                fullname
+            }
+            createdon
+        }
+        borroweditems {
+            id
+        }
     }
-    borroweditems {
-      id
-      title
-    }
-  }
 }
 `;
 
