@@ -18,6 +18,7 @@ class BoomButton extends Component {
                     primary={this.props.primary}
                     overlayStyle={this.props.overlayStyle}
                     labelColor={'#fff'}
+                    onClick={this.props.onClick}
                 />
             </div>
         )

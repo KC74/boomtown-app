@@ -4,6 +4,7 @@ import Logo from '../../components/Logo/';
 import BoomSelectField from '../../components/SelectField/SelectField'
 import BoomButton from '../../components/Buttons/Buttons'
 import AppBar from 'material-ui/AppBar'
+import * as firebase from 'firebase'
 
 import './styles.css';
 
@@ -24,6 +25,12 @@ class Header extends Component {
     }
 
     handleChange = (event, index, values) => this.setState({ values });
+
+    logout = () => firebase.auth().signOut().then(function() {
+        console.log('Successfully signed-out!')
+      }).catch(function(error) {
+        console.log('Error:', error)
+      });
 
     render() {
 
@@ -51,7 +58,7 @@ class Header extends Component {
                 </div>
                 <div className="right-container">
                     <BoomButton label="My Profile" primary={true} styles={{ margin: "15px 0 15px 15px" }} />
-                    <Link to='/login'><BoomButton label="Logout" bgcolor="rgb(38, 50, 56)" styles={{ margin: "15px 0 15px 15px" }} /></Link>
+                    <Link to='/login'><BoomButton onClick={this.logout} label="Logout" bgcolor="rgb(38, 50, 56)" styles={{ margin: "15px 0 15px 15px" }} /></Link>
                 </div>
             </AppBar>
         );
