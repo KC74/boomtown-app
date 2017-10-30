@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
-import { login, logout } from "../../redux/modules/firebase";
+import { login } from "../../redux/modules/firebase";
 // import PropTypes from 'prop-types';
 
 import Login from "./Login";
@@ -28,17 +28,7 @@ class LoginContainer extends Component {
   };
 
   render() {
-    const { dispatch } = this.props;
-
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        dispatch(login(user));
-      } else {
-        dispatch(logout());
-      }
-    });
-    console.log("LoginContainer:", this.props);
-    return <Login login={this.handleSubmit} />;
+    return <Login login={this.handleSubmit} {...this.props} />;
   }
 }
 

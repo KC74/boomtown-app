@@ -9,7 +9,7 @@ import * as firebase from "firebase";
 import registerServiceWorker from "./registerServiceWorker";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import muiTheme from "./config/theme";
-// import { login, logout } from "./redux/modules/firebase";
+import { login, logout } from "./redux/modules/firebase";
 
 import Layout from "./components/Layout";
 import Routes from "./routes/";
@@ -31,6 +31,14 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    store.dispatch(login(user));
+  } else {
+    store.dispatch(logout());
+  }
+});
 
 class Boomtown extends Component {
   render() {

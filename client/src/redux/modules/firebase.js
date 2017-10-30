@@ -16,11 +16,13 @@ export default function(state = {}, action) {
     case LOGIN:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        isAuthed: true
       };
     case LOGOUT:
       return {
-        ...state
+        ...state,
+        isAuthed: false
       };
     default:
       return state;
