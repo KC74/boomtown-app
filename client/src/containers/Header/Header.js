@@ -24,7 +24,9 @@ class Header extends Component {
 
     }
 
-    handleChange = (event, index, values) => this.setState({ values });
+    handleChange = (event, index, values) => {
+        this.setState({ values })
+    }
 
     logout = () => firebase.auth().signOut().then(function() {
         console.log('Successfully signed-out!')

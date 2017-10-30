@@ -14,8 +14,7 @@ import logo from "../../images/boomtown-logo.svg";
 import bottomLeft from "../../images/home-bl.svg";
 import topRight from "../../images/home-tr.svg";
 
-const Login = ({ login }) => (
-
+const Login = ({ login, isAuthed }) => (
   <div className="page login">
     <div className="logo">
       <img src={logo} alt="Boomtown Logo" />
@@ -36,16 +35,16 @@ const Login = ({ login }) => (
             <div>
               <Field name="password" component={passwordinput} />
             </div>
-            {/* <Link to="/"> */}
-              <RaisedButton
-                className="enterButton"
-                primary
-                fullWidth
-                type="submit"
-              >
+            <RaisedButton
+              className="enterButton"
+              primary
+              fullWidth
+              type="submit"
+            >
+              <Link to="/" onClick={isAuthed}>
                 Enter
-              </RaisedButton>
-            {/* </Link> */}
+              </Link>
+            </RaisedButton>
           </form>
         </div>
       </Paper>

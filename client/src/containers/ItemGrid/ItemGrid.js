@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ItemData from "../ItemData";
-// import { connect } from 'react-redux'
+import { connect } from "react-redux";
 // import { getCardItems } from '../../actions'
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
@@ -13,6 +13,7 @@ class ItemGrid extends Component {
 
     const { items, loading } = this.props.data;
 
+    console.log("ItemGrid", this.props);
     return (
       <div className="card-item-grid" style={styles}>
         <ItemData cardsData={items} loading={loading} />
@@ -47,7 +48,8 @@ const fetchCardData = gql`
   }
 `;
 
-export default graphql(fetchCardData)(ItemGrid);
+const auth = connect(store => store.auth)(ItemGrid);
+export default graphql(fetchCardData)(auth);
 
 // query {
 //     items {

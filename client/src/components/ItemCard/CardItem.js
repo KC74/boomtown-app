@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 class CardItem extends Component {
     render() {
 
-        const { id, title, description, createdon, imageurl, itemowner, tags, borrower } = this.props
+        const { id, title, description, createdon, imageurl, itemowner, borrower } = this.props
 
         return (
             <div className="card-wrapper" key={id} style={{ width: "33%", padding: "1%", margin: " 0 0.17%" }}>
