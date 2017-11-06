@@ -6,8 +6,6 @@ import { Field } from "redux-form";
 import RaisedButton from "material-ui/RaisedButton";
 import Paper from "material-ui/Paper";
 
-// import ValidatedTextField from "../../components/ValidatedTextField";
-
 import "./styles.css";
 import logo from "../../images/boomtown-logo.svg";
 import bottomLeft from "../../images/home-bl.svg";
