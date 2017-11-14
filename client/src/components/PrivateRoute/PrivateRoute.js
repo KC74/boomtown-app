@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = firebase.auth().currentUser;
+  console.log(rest);
 
-  if (user === null) {
+  if (user === null && rest.auth !== undefined) {
     // user not initialized yet
     return (
       <div

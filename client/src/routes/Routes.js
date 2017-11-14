@@ -7,19 +7,6 @@ import { NotFound } from "../containers/NotFound/";
 import PrivateRoute from "../components/PrivateRoute/";
 import Login from "../containers/Login/";
 
-// class Routes extends Component {
-//   render() {
-//     return (
-//       <Switch>
-//         <Route path="/login" component={Login} />
-//         <PrivateRoute exact path="/" component={ItemGrid} />
-//         <PrivateRoute path="/profile/:id" component={ProfileContainer} />
-//         <Route path="*" component={NotFound} />
-//       </Switch>
-//     );
-//   }
-// }
-
 const Routes = () => {
   return (
     <Switch>
