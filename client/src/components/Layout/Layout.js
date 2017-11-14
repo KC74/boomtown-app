@@ -1,64 +1,36 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Header from '../../containers/Header/';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Header from "../../containers/Header/";
+import { Switch, Route } from "react-router";
+import "./styles.css";
 
-import './styles.css';
-
-// ---------------------------------------
-
-// const Layout = ({ children }) => (
-//     <div className="appContentWrapper">
-//         <div className="appHeader">
-//             {/* Might want to put your header bar here... */}
-//         </div>
-//         <div className="appContent">
-//             {children}
-//         </div>
-//         {/* And a footer here, but not on the login route... */}
-//     </div>
-// );
-
-// Layout.defaultProps = {
-//     children: null
-// };
-
-// Layout.propTypes = {
-//     children: PropTypes.node
-// };
-
-// export default Layout;
-
-// ---------------------------------------
-import { ContentContainer }  from '../../containers/Content/';
-// import ItemData from '../../containers/ItemData/'
-// import Login from '../../containers/Login/'
-
+import { ContentContainer } from "../../containers/Content/";
 class Layout extends Component {
-    render() {
+  render() {
+    console.log("Layout", this.props);
 
-        const { children } = this.props
+    const { children } = this.props;
 
-        Layout.propTypes = {
-            children: PropTypes.node
-        };
+    Layout.propTypes = {
+      children: PropTypes.node
+    };
 
-        return (
-            <div className="appContentWrapper">
-                <div className="appHeader">
-                    {/* Might want to put your header bar here... */}
-                    <Header />
-                </div>
-                <div className="appContent">
-                    <ContentContainer>
-                        { children }
-                    </ContentContainer>
-                </div>
+    return (
+      <div className="appContentWrapper">
+        <div className="appHeader">
+          {/* Might want to put your header bar here... */}
+          <Route exact path="/" component={Header} />
+          <Route path="/profile/:id" component={Header} />
+          {/* <Header /> */}
+        </div>
+        <div className="appContent">
+          <ContentContainer>{children}</ContentContainer>
+        </div>
 
-                {/* And a footer here, but not on the login route... */}
-            </div>
-        );
-
-    }
+        {/* And a footer here, but not on the login route... */}
+      </div>
+    );
+  }
 }
 
 export default Layout;
