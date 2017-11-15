@@ -21,7 +21,6 @@ class Layout extends Component {
           {/* Might want to put your header bar here... */}
           <Route exact path="/" component={Header} />
           <Route path="/profile/:id" component={Header} />
-          {/* <Header /> */}
         </div>
         <div className="appContent">
           <ContentContainer>{children}</ContentContainer>

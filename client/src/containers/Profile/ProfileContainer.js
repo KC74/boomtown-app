@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux'
-// import { getCardItems, getUsers } from '../../actions'
 import { CardItem } from "../../components/ItemCard/";
 import Masonry from "react-masonry-component";
 import CircularProgress from "material-ui/CircularProgress";
@@ -118,31 +116,3 @@ export default graphql(fetchCardData, {
     }
   })
 })(ProfileContainer);
-
-// componentDidMount() {
-//     this.props.getCardItems()
-
-// const { match } = this.props
-// const { cardsData } = this.props.cardsData
-// const filteredItems = cardsData.items.filter(item => item.itemowner === match.params.id)
-
-// let userData = {}
-
-// cardsData.users.find((user) => {
-//     if (user.id === match.params.id) {
-//         return userData = {
-//             ...user,
-//             itemsShared: user.items.length,
-//             itemsBorrowed: 0
-//         }
-//     }
-//     return false
-// })
-
-// const mapStateToProps = (store) => {
-//     return {
-//         cardsData: store
-//     }
-// }
-
-// export default connect(mapStateToProps, { getCardItems, getUsers })(ProfileContainer)

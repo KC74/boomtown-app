@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ItemData from "../ItemData";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
 import { connect } from "react-redux";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
@@ -11,11 +13,25 @@ class ItemGrid extends Component {
       width: "100%"
     };
 
+    const style2 = {
+      marginRight: 20,
+      position: "fixed",
+      bottom: "1rem",
+      right: 0
+    };
+
     const { items, loading } = this.props.data;
 
     return (
       <div className="card-item-grid" style={styles}>
         <ItemData cardsData={items} loading={loading} />
+        <FloatingActionButton
+          style={style2}
+          backgroundColor="#000"
+          iconStyle={{ color: "#fff" }}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }
@@ -56,86 +72,3 @@ ItemGrid.PropTypes = {
 
 const auth = connect(store => store.auth)(ItemGrid);
 export default graphql(fetchCardData)(auth);
-
-// query {
-//     items {
-//       id
-//       title
-//       description
-//       imageurl
-//       tags
-//         itemowner {
-//         id
-//         fullname
-//         bio
-//         email
-//         owneditems {
-//           id
-//           title
-//           borrower {
-//             id
-//             fullname
-//           }
-//         }
-//               borroweditems {
-//                 id
-//           title
-//               }
-//       }
-//       createdon
-//       available
-//       borrower {
-//         id
-//         fullname
-//       }
-//     }
-//   }
-// connect(store => store.cardsData, { getCardItems })(ItemGrid)
-
-/**
- * OLD CODE HERE FOR REFERENCE
- */
-
-// componentDidMount() {
-
-// this.props.getCardItems()
-
-/**
-     * Old code here for reference
-     */
-///////////////////////////////////////////////////////////////
-//
-// fetch('http://localhost:3001/items')
-// .then( response => {
-//     return response.json()
-// })
-// .then( data => {
-//     this.setState({ itemsData: data})
-// })
-
-// fetch ('http://localhost:3001/users')
-// .then( response => {
-//     return response.json()
-// })
-// .then( data => {
-//     this.setState({ usersData: data })
-// })
-//
-///////////////////////////////////////////////////////////////
-// }
-
-///////////////////////////////////////////////////////////////
-//
-// const mapStateToProps = (store) => {
-//     return {
-//         cardsData: store
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return { getCardItems() }
-// }
-//
-///////////////////////////////////////////////////////////////
-
-// export default connect(mapStateToProps, { getCardItems })(ItemGrid)
