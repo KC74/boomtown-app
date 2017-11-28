@@ -10,15 +10,6 @@ import "./styles.css";
 
 class Header extends Component {
   state = {
-    labels: [
-      "Electronics",
-      "Household Items",
-      "Musical Instruments",
-      "Physical Media",
-      "Recreational Equipment",
-      "Sporting Goods",
-      "Tools"
-    ],
     values: []
   };
 
@@ -39,7 +30,6 @@ class Header extends Component {
 
   render() {
     let location = window.location.href;
-
     return (
       <AppBar
         className="header-appbar"
@@ -57,7 +47,7 @@ class Header extends Component {
               <BoomSelectField
                 values={this.state.values}
                 handleChange={this.handleChange}
-                labels={this.state.labels}
+                labels={this.props.tags !== false ? this.props.tags : []}
               />
             ) : (
               false

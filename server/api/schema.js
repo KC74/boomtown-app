@@ -1,6 +1,6 @@
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from "graphql-tools";
 
-import resolvers from './resolver';
+import resolvers from "./resolver";
 
 const typeDefs = `
     type User {
@@ -25,14 +25,15 @@ const typeDefs = `
         itemowner: User!
         createdon: String!
         borrower: User
+        tags: [Tags]
     }
 
     type Query {
         users: [User]
         user(id: ID!): User
         items: [Items]
-        item(id: ID!): Items
-
+        item(id: ID!): [Items]
+        tags:[Tags]
     }
 
     type Mutation {
@@ -47,6 +48,6 @@ const typeDefs = `
 `;
 
 export default makeExecutableSchema({
-    typeDefs,
-    resolvers
-})
+  typeDefs,
+  resolvers
+});

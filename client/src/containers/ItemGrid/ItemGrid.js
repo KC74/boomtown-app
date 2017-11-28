@@ -21,6 +21,7 @@ class ItemGrid extends Component {
     };
 
     const { items, loading } = this.props.data;
+    console.log(this.props.data);
 
     return (
       <div className="card-item-grid" style={styles}>
@@ -29,6 +30,7 @@ class ItemGrid extends Component {
           style={style2}
           backgroundColor="#000"
           iconStyle={{ color: "#fff" }}
+          href="/share"
         >
           <ContentAdd />
         </FloatingActionButton>
@@ -44,6 +46,10 @@ const fetchCardData = gql`
       title
       description
       imageurl
+      tags {
+        title
+        tagsid
+      }
       itemowner {
         id
         fullname

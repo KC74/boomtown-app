@@ -1,13 +1,12 @@
-
 // import { data } from './db'
-import { 
-  getItems, 
-  getUsers, 
-  getOwnedItems, 
+import {
+  getItems,
+  getUsers,
+  getOwnedItems,
   getBorrowedItems,
-  createNewItem 
-} from './resources/postgresHelpers'
-import { database } from '../index.js'
+  createNewItem
+} from "./resources/postgresHelpers";
+import { database } from "../index.js";
 
 // import fetch from 'node-fetch'
 
@@ -16,32 +15,38 @@ const resolveFunctions = {
   Query: {
     users() {
       try {
-        return getUsers()
+        return getUsers();
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     },
     user(root, { id }, context) {
       try {
-        return context.loaders.SingleUser.load(id)
+        return context.loaders.SingleUser.load(id);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     },
     items() {
       try {
-        // return getItems()
         return database.getItems();
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     },
     item(root, { id }, context) {
       try {
-        // return getItems(id)
-        return context.loaders.SingleItem.load(id)
+        console.log("resolver", id);
+        return context.loaders.SingleItem.load(id);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
+      }
+    },
+    tags() {
+      try {
+        return database.getTags();
+      } catch (e) {
+        return console.log(e);
       }
     }
   },
@@ -50,43 +55,44 @@ const resolveFunctions = {
     itemowner(item) {
       if (!item.itemowner) return null;
       try {
-        return getUsers(item.itemowner)
+        return getUsers(item.itemowner);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     },
     borrower(item) {
       if (!item.borrower) return null;
       try {
-        return getUsers(item.borrower)
+        return getUsers(item.borrower);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
+    },
+    tags(item, args) {
+      return database.getTag(item.id);
     }
   },
   User: {
     owneditems(user, args, context) {
       if (!user.id) return null;
       try {
-        // return getOwnedItems(user.id)
-        return context.loaders.UserOwnedItems.load(user.id)
+        return context.loaders.UserOwnedItems.load(user.id);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     },
     borroweditems(user, args, context) {
       if (!user.id) return null;
       try {
-        // return getBorrowedItems(user.id)
-        return context.loaders.UserBorrowedItems.load(user.id)
+        return context.loaders.UserBorrowedItems.load(user.id);
       } catch (e) {
-        return console.log(e)
+        return console.log(e);
       }
     }
   },
   Mutation: {
     addItem(root, { title, description, imageurl, tags, itemowner }) {
-      return createNewItem(title, description, imageurl, tags, itemowner)
+      return createNewItem(title, description, imageurl, tags, itemowner);
     }
   }
 };

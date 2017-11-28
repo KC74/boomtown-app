@@ -95,6 +95,9 @@ const fetchCardData = gql`
         id
         title
         description
+        tags {
+          title
+        }
         imageurl
         itemowner {
           id
