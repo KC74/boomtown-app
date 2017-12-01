@@ -9,6 +9,7 @@ import {
   CardText
 } from "material-ui";
 import BoomButton from "../../components/Buttons/Buttons";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 class CardItem extends Component {
@@ -50,7 +51,7 @@ class CardItem extends Component {
                 {itemowner.fullname}
               </Link>
             }
-            subtitle={createdon}
+            subtitle={moment(createdon).fromNow()}
             avatar={
               <Gravatar
                 style={{ borderRadius: "50%" }}
