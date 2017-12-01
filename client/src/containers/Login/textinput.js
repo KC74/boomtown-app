@@ -3,12 +3,12 @@ import { TextField } from "material-ui";
 
 export const userinput = field => (
   <div>
-    <TextField 
-        id="username" 
-        {...field.input} 
-        hintText="Email"
-        type="email"
-        floatingLabelText="Email"
+    <TextField
+      id="username123"
+      {...field.input}
+      hintText="Email"
+      type="email"
+      floatingLabelText="Email"
     />
   </div>
 );
@@ -19,8 +19,31 @@ export const passwordinput = field => (
       id="password"
       {...field.input}
       hintText="Password"
-      type="password" 
+      type="password"
       floatingLabelText="Password"
+    />
+  </div>
+);
+
+export const shareTitleInput = field => (
+  <div>
+    <TextField
+      id="share-title"
+      {...field.input}
+      hintText="Title"
+      type="text"
+      floatingLabelText="Title"
+    />
+  </div>
+);
+export const shareDescriptionInput = field => (
+  <div>
+    <TextField
+      id="share-description"
+      {...field.input}
+      hintText="Description"
+      type="text"
+      floatingLabelText="Description"
     />
   </div>
 );

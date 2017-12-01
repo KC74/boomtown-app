@@ -42,7 +42,8 @@ const Login = props => {
                 onClick={() =>
                   setTimeout(function() {
                     props.history.push("/");
-                  }, 700)}
+                  }, 700)
+                }
               >
                 Enter
               </RaisedButton>
