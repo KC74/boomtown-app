@@ -61,8 +61,8 @@ class CardItem extends Component {
             title={title}
             subtitle={tags.map((tag, index, arr) => {
               return index !== arr.length - 1
-                ? `${tag.title}, `
-                : `${tag.title}`;
+                ? `${tag.title || tag}, `
+                : `${tag.title || tag}`;
             })}
           />
           <CardText>{description}</CardText>

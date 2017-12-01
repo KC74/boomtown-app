@@ -53,7 +53,6 @@ class RightSide extends Component {
   render() {
     const { stepIndex } = this.state;
     const { tags, selectedTags, handleChange } = this.props;
-    console.log(selectedTags);
     return (
       <Form>
         <div style={{ maxWidth: 380, maxHeight: 400, margin: "auto" }}>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import LeftSide from "./LeftSide";
-import RightSide from "./RightSide";
-import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import { graphql } from "react-apollo";
 import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
-import "./styles.css";
 import { compose } from "redux";
 import { setTags, setSelectedTagsSuccess } from "../../redux/modules/tags";
+import LeftSide from "./LeftSide";
+import RightSide from "./RightSide";
+import "./styles.css";
 
 class ShareContainer extends Component {
   _handleChange = (event, index, values) => {
@@ -32,7 +32,11 @@ class ShareContainer extends Component {
     return (
       <div className="share-container">
         {user !== undefined ? (
-          <LeftSide itemowner={user} {...shareForm} />
+          <LeftSide
+            itemowner={user}
+            {...shareForm}
+            selectedTags={selectedTags}
+          />
         ) : (
           "loading..."
         )}

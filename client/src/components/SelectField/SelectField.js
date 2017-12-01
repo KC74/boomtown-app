@@ -9,7 +9,6 @@ const styles = {
 const BoomSelectField = ({ values, handleChange, labels }) => {
   const menuItems = values => {
     return labels.map(name => {
-      console.log(name);
       return (
         <MenuItem
           key={name}

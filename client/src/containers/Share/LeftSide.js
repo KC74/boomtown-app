@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { CardItem } from "../../components/ItemCard";
 
-const LeftSide = ({ itemowner, title, description }) => {
+const LeftSide = ({ itemowner, title, description, selectedTags }) => {
+  console.log(selectedTags);
   return (
     <CardItem
       id="1"
@@ -14,12 +15,7 @@ const LeftSide = ({ itemowner, title, description }) => {
       }
       itemowner={itemowner}
       borrower={null}
-      tags={[
-        { title: "Electronics" },
-        { title: "Car" },
-        { title: "Speed" },
-        { title: "Vroom" }
-      ]}
+      tags={selectedTags ? selectedTags : []}
     />
   );
 };
