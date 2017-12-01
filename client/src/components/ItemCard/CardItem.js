@@ -21,7 +21,8 @@ class CardItem extends Component {
       imageurl,
       itemowner,
       borrower,
-      tags
+      tags,
+      hideBorrowButton
     } = this.props;
 
     return (
@@ -49,7 +50,7 @@ class CardItem extends Component {
                 {itemowner.fullname}
               </Link>
             }
-            subtitle={new Date(createdon).toUTCString()}
+            subtitle={createdon}
             avatar={
               <Gravatar
                 style={{ borderRadius: "50%" }}
@@ -71,7 +72,9 @@ class CardItem extends Component {
               <BoomButton
                 label="Borrow"
                 bgcolor="rgb(38, 50, 56)"
-                styles={{ marginLeft: "0" }}
+                styles={
+                  hideBorrowButton ? { display: "none" } : { marginLeft: "0" }
+                }
               />
             ) : null}
           </CardActions>
