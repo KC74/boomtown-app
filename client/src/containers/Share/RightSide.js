@@ -31,13 +31,23 @@ class RightSide extends Component {
   _renderStepActions(step) {
     return (
       <div style={{ margin: "12px 0" }}>
-        <RaisedButton
-          label="Next"
-          disableTouchRipple={true}
-          disableFocusRipple={true}
-          onClick={this._handleNext}
-          style={{ marginRight: 12 }}
-        />
+        {step === 3 ? (
+          <RaisedButton
+            label="Confirm"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onClick={this._handleNext}
+            style={{ marginRight: 12 }}
+          />
+        ) : (
+          <RaisedButton
+            label="Next"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onClick={this._handleNext}
+            style={{ marginRight: 12 }}
+          />
+        )}
         {step > 0 && (
           <FlatButton
             label="Back"
