@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
 import { compose } from "redux";
 import { setTags, setSelectedTagsSuccess } from "../../redux/modules/tags";
+import * as firebase from "firebase";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import "./styles.css";
@@ -78,7 +79,7 @@ const composer = compose(
   graphql(fetchCardData, {
     options: ownProps => ({
       variables: {
-        id: "k721A4pRNggCx7b6ryEE8vx1VIi1"
+        id: firebase.auth().currentUser.uid
       }
     })
   })
