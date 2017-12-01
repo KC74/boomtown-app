@@ -104,6 +104,9 @@ const fetchCardData = gql`
           fullname
         }
         createdon
+        borrower {
+          id
+        }
       }
       borroweditems {
         id
