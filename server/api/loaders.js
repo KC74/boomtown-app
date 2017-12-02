@@ -1,6 +1,7 @@
 import DataLoader from "dataloader";
 import { database } from "../index";
-import { getUsers } from "./resources/postgresHelpers";
+// import { getUsers } from "./resources/postgresHelpers";
+import { getUser } from "./resources/firebaseHelpers";
 export default function() {
   return {
     UserOwnedItems: new DataLoader(ids =>
@@ -10,7 +11,7 @@ export default function() {
       Promise.all(ids.map(id => database.getUserBorrowedItems(id)))
     ),
     SingleUser: new DataLoader(user =>
-      Promise.all(user.map(id => getUsers(id)))
+      Promise.all(user.map(id => getUser(id)))
     ),
     SingleItem: new DataLoader(item =>
       Promise.all(item.map(id => database.getSingleItem(id)))

@@ -1,11 +1,12 @@
 // import { data } from './db'
 import {
   getItems,
-  getUsers,
+  // getUsers,
   getOwnedItems,
   getBorrowedItems,
   createNewItem
 } from "./resources/postgresHelpers";
+import { getUser, getUsers } from "./resources/firebaseHelpers";
 import { database } from "../index.js";
 
 // import fetch from 'node-fetch'
@@ -55,7 +56,7 @@ const resolveFunctions = {
     itemowner(item) {
       if (!item.itemowner) return null;
       try {
-        return getUsers(item.itemowner);
+        return getUser(item.itemowner);
       } catch (e) {
         return console.log(e);
       }
@@ -63,7 +64,7 @@ const resolveFunctions = {
     borrower(item) {
       if (!item.borrower) return null;
       try {
-        return getUsers(item.borrower);
+        return getUser(item.borrower);
       } catch (e) {
         return console.log(e);
       }
